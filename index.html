@@ -3,66 +3,676 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Грузоперевозки в [ТВОЙ ГОРОД] недорого. Подача машины от 30 минут. Закажите перевозку груза!">
-    <title>Грузоперевозки [ТВОЙ ГОРОД] | Заказать Газель</title>
-    
+    <title>Сарычева Наталья | Графический дизайнер</title>
     <style>
-        :root { --main: #f39c12; --dark: #2c3e50; }
-        body { font-family: sans-serif; margin: 0; line-height: 1.6; color: #333; background: #f9f9f9; }
-        header { background: var(--dark); color: white; padding: 20px; text-align: center; position: sticky; top: 0; z-index: 10; }
-        .hero { background: #34495e; color: white; padding: 60px 20px; text-align: center; }
-        .container { max-width: 1000px; margin: auto; padding: 20px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 20px 0; }
-        .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); text-align: center; }
-        .btn { background: var(--main); color: white; padding: 15px 25px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold; border: none; cursor: pointer; font-size: 1rem; }
-        .form-group { background: white; padding: 30px; border-radius: 10px; max-width: 500px; margin: auto; }
-        input, textarea { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
-        footer { background: var(--dark); color: white; text-align: center; padding: 20px; margin-top: 40px; }
-        .whatsapp-btn { background: #25d366; }
+        /* БАЗОВЫЕ СТИЛИ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* КОНТЕЙНЕР */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ШАПКА С АНИМАЦИЕЙ */
+        header {
+            text-align: center;
+            padding: 80px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* АНИМАЦИЯ ФОТО */
+        .avatar-wrapper {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 30px;
+        }
+
+        .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #7c3aed;
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3);
+            transform: scale(0);
+            animation: scaleIn 0.8s ease forwards 0.3s;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* АНИМАЦИЯ ТЕКСТА */
+        h1 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 15px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s ease forwards 0.5s;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: #a78bfa;
+            margin-bottom: 25px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s ease forwards 0.7s;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: #cbd5e1;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s ease forwards 0.9s;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* АНИМАЦИЯ КНОПОК */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards 1.1s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .social-link {
+            background: #1e293b;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            border: 2px solid #334155;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link:hover {
+            background: #7c3aed;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(124, 58, 237, 0.4);
+        }
+
+        /* АНИМАЦИЯ ПРОЕКТОВ ПРИ СКРОЛЛЕ */
+        .project-card {
+            background: #1e293b;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #334155;
+            opacity: 0;
+            transform: translateY(50px) scale(0.9);
+            transition: all 0.6s ease;
+        }
+
+        .project-card.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .project-card:hover {
+            border-color: #7c3aed;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        /* АНИМАЦИЯ ИЗОБРАЖЕНИЙ ПРОЕКТОВ */
+        .project-image-container {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.1);
+        }
+
+        /* АНИМАЦИЯ ТЕКСТА В КАРТОЧКАХ */
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .project-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #7c3aed;
+            transition: width 0.4s ease;
+        }
+
+        .project-card:hover .project-title::after {
+            width: 100%;
+        }
+
+        /* АНИМАЦИЯ ТЕГОВ */
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .project-tag {
+            background: rgba(124, 58, 237, 0.1);
+            color: #a78bfa;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            transform: scale(0.95);
+            opacity: 0;
+            animation: tagAppear 0.4s ease forwards;
+        }
+
+        .project-card.visible .project-tag:nth-child(1) { animation-delay: 0.1s; }
+        .project-card.visible .project-tag:nth-child(2) { animation-delay: 0.2s; }
+        .project-card.visible .project-tag:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes tagAppear {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* АНИМАЦИЯ ССЫЛОК */
+        .project-link {
+            color: #a78bfa;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .project-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #7c3aed;
+            transition: width 0.3s ease;
+        }
+
+        .project-link:hover::after {
+            width: 100%;
+        }
+
+        /* АНИМАЦИЯ КОНТАКТНОГО БЛОКА */
+        .contact-section {
+            padding: 80px 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .contact-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .contact-box {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border-radius: 25px;
+            padding: 60px;
+            text-align: center;
+            border: 1px solid #334155;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(124, 58, 237, 0.1), transparent);
+            transform: rotate(45deg);
+            animation: shimmer 3s infinite linear;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        .email-link {
+            display: inline-block;
+            font-size: 1.4rem;
+            color: #a78bfa;
+            text-decoration: none;
+            padding: 15px 30px;
+            background: rgba(124, 58, 237, 0.1);
+            border-radius: 15px;
+            border: 2px solid #7c3aed;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .email-link:hover {
+            background: #7c3aed;
+            color: white;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(124, 58, 237, 0.3);
+        }
+
+        /* РАЗДЕЛ ПРОЕКТОВ */
+        .projects-section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: white;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .section-title.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 4px;
+            background: #7c3aed;
+            margin: 15px auto 0;
+            border-radius: 2px;
+            transition: width 1s ease;
+        }
+
+        .section-title.visible::after {
+            width: 100px;
+        }
+
+        /* ГРИД ПРОЕКТОВ */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
+            padding: 0 10px;
+        }
+
+        /* ПОДВАЛ */
+        footer {
+            text-align: center;
+            padding: 50px 0;
+            border-top: 1px solid #334155;
+            margin-top: 60px;
+            color: #94a3b8;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        footer.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* АДАПТИВНОСТЬ */
+        @media (max-width: 1200px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+                padding: 0;
+            }
+            
+            .contact-box {
+                padding: 40px 20px;
+            }
+            
+            .email-link {
+                font-size: 1.2rem;
+            }
+            
+            .avatar-wrapper {
+                width: 180px;
+                height: 180px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .social-link {
+                width: 80%;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>
+    <div class="container">
+        <!-- ШАПКА -->
+        <header>
+            <div class="avatar-wrapper">
+                <img src="avatar.jpg" alt="Наталья Сарычева" class="avatar">
+            </div>
+            <h1>Сарычева Наталья</h1>
+            <p class="subtitle">Графический дизайнер / Иллюстратор</p>
+            <p class="description">
+                Создаю уникальные визуальные решения и брендинг. Специализируюсь на разработке логотипов, 
+                дизайне упаковки и цифровых иллюстрациях. Превращаю идеи в запоминающийся визуал.
+            </p>
+            
+            <div class="social-links">
+                <a href="#" class="social-link">Behance</a>
+                <a href="#" class="social-link">Dribbble</a>
+                <a href="#" class="social-link">Telegram</a>
+                <a href="#" class="social-link">Instagram</a>
+            </div>
+        </header>
 
-<header>
-    <div style="font-size: 1.5rem; font-weight: bold;">ГРУЗО-ПЕРЕВОЗКИ</div>
-    <div>📞 <a href="tel:+79000000000" style="color: white; text-decoration: none;">+7 (900) 000-00-00</a></div>
-</header>
+        <!-- ПРОЕКТЫ -->
+        <section class="projects-section">
+            <h2 class="section-title">Мои проекты</h2>
+            
+            <div class="projects-grid">
+                <!-- ПРОЕКТ 1 -->
+                <div class="project-card">
+                    <div class="project-image-container">
+                        <img src="https://images.unsplash.com/photo-1634942537034-2531766767d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             alt="Фирменный стиль Граффити" class="project-image">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Фирменный стиль "Граффити"</h3>
+                        <div class="project-tags">
+                            <span class="project-tag">Брендинг</span>
+                            <span class="project-tag">Логотип</span>
+                            <span class="project-tag">Идентичность</span>
+                        </div>
+                        <p class="project-description">
+                            Полный цикл разработки айдентики для бренда уличной одежды. 
+                            Логотип, цветовая палитра, типографика и паттерны.
+                        </p>
+                        <a href="#" class="project-link">Смотреть кейс →</a>
+                    </div>
+                </div>
+                
+                <!-- ПРОЕКТ 2 -->
+                <div class="project-card">
+                    <div class="project-image-container">
+                        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             alt="Реклама на авто" class="project-image">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Рекламный дизайн для авто</h3>
+                        <div class="project-tags">
+                            <span class="project-tag">Реклама</span>
+                            <span class="project-tag">OOH</span>
+                            <span class="project-tag">Визуал</span>
+                        </div>
+                        <p class="project-description">
+                            Разработка макета для рекламной кампании службы доставки. 
+                            Визуал для автомобильной рекламы и сопутствующие материалы.
+                        </p>
+                        <a href="#" class="project-link">Смотреть кейс →</a>
+                    </div>
+                </div>
+                
+                <!-- ПРОЕКТ 3 -->
+                <div class="project-card">
+                    <div class="project-image-container">
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             alt="Иллюстрации для веба" class="project-image">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Иллюстрации для IT-компании</h3>
+                        <div class="project-tags">
+                            <span class="project-tag">Иллюстрация</span>
+                            <span class="project-tag">UI/UX</span>
+                            <span class="project-tag">Веб-дизайн</span>
+                        </div>
+                        <p class="project-description">
+                            Создание уникальных иконок, персонажей и иллюстраций 
+                            для веб-сайта и мобильного приложения технологической компании.
+                        </p>
+                        <a href="#" class="project-link">Смотреть кейс →</a>
+                    </div>
+                </div>
 
-<div class="hero">
-    <h1>Надежные перевозки в [ТВОЙ ГОРОД]</h1>
-    <p>Переезды, доставка стройматериалов, вывоз мусора</p>
-    <a href="https://wa.me/79000000000" class="btn whatsapp-btn">Написать в WhatsApp</a>
-</div>
+                <!-- ПРОЕКТ 4 -->
+                <div class="project-card">
+                    <div class="project-image-container">
+                        <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             alt="Дизайн упаковки" class="project-image">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Упаковка премиум-косметики</h3>
+                        <div class="project-tags">
+                            <span class="project-tag">Упаковка</span>
+                            <span class="project-tag">Косметика</span>
+                            <span class="project-tag">Премиум</span>
+                        </div>
+                        <p class="project-description">
+                            Разработка дизайна упаковки для люксовой косметической линии. 
+                            Использование тиснения, фольгирования и экологичных материалов.
+                        </p>
+                        <a href="#" class="project-link">Смотреть кейс →</a>
+                    </div>
+                </div>
 
-<div class="container">
-    <h2 style="text-align: center;">Наши услуги и цены</h2>
-    <div class="grid">
-        <div class="card">
-            <h3>Газель 1.5т</h3>
-            <p>От 600 руб/час</p>
-            <small>Минимум 2 часа</small>
-        </div>
-        <div class="card">
-            <h3>Грузчики</h3>
-            <p>От 350 руб/час</p>
-            <small>Крепкие и трезвые</small>
-        </div>
+                <!-- ПРОЕКТ 5 -->
+                <div class="project-card">
+                    <div class="project-image-container">
+                        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             alt="Брендинг ресторана" class="project-image">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Брендинг для кофейни</h3>
+                        <div class="project-tags">
+                            <span class="project-tag">HoReCa</span>
+                            <span class="project-tag">Брендинг</span>
+                            <span class="project-tag">Меню</span>
+                        </div>
+                        <p class="project-description">
+                            Создание полного бренд-бука для новой кофейни в центре города. 
+                            Логотип, меню, униформа сотрудников и сувенирная продукция.
+                        </p>
+                        <a href="#" class="project-link">Смотреть кейс →</a>
+                    </div>
+                </div>
+
+                <!-- ПРОЕКТ 6 -->
+                <div class="project-card">
+                    <div class="project-image-container">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             alt="Мобильное приложение" class="project-image">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">UI/UX для мобильного приложения</h3>
+                        <div class="project-tags">
+                            <span class="project-tag">UI/UX</span>
+                            <span class="project-tag">Мобильное</span>
+                            <span class="project-tag">Прототип</span>
+                        </div>
+                        <p class="project-description">
+                            Дизайн пользовательского интерфейса для fintech-приложения. 
+                            Создание интуитивной навигации и прототипирование всех экранов.
+                        </p>
+                        <a href="#" class="project-link">Смотреть кейс →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- КОНТАКТЫ -->
+        <section class="contact-section">
+            <div class="contact-box">
+                <h2>Связаться со мной</h2>
+                <p>Готова к новым проектам и творческим вызовам! Давайте создадим что-то уникальное вместе.</p>
+                <a href="mailto:sarychevanatasha22@gmail.com" class="email-link">sarychevanatasha22@gmail.com</a>
+            </div>
+        </section>
+
+        <!-- ПОДВАЛ -->
+        <footer>
+            <p>© 2024 Сарычева Наталья. Все права защищены.</p>
+            <p>Портфолио опубликовано на GitHub Pages</p>
+        </footer>
     </div>
 
-    <h2 style="text-align: center;" id="order">Оставить заявку</h2>
-    <div class="form-group">
-        <form action="https://formspree.io/f/ВАШ_ID" method="POST">
-            <input type="text" name="name" placeholder="Ваше имя" required>
-            <input type="tel" name="phone" placeholder="Ваш телефон" required>
-            <textarea name="comment" placeholder="Что везем и куда?"></textarea>
-            <button type="submit" class="btn" style="width: 100%;">Отправить менеджеру</button>
-        </form>
-    </div>
-</div>
+    <script>
+        // JavaScript для анимации при скролле
+        document.addEventListener('DOMContentLoaded', function() {
+            // Функция для проверки видимости элемента
+            function isElementInViewport(el) {
+                const rect = el.getBoundingClientRect();
+                return (
+                    rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8 &&
+                    rect.bottom >= 0
+                );
+            }
 
-<footer>
-    <p>&copy; 2024 Грузоперевозки [ТВОЙ ГОРОД]. Работаем 24/7.</p>
-</footer>
+            // Функция для добавления класса visible
+            function handleScrollAnimation() {
+                const elements = document.querySelectorAll('.project-card, .section-title, .contact-section, footer');
+                
+                elements.forEach(element => {
+                    if (isElementInViewport(element)) {
+                        element.classList.add('visible');
+                    }
+                });
+            }
 
+            // Обработчик скролла
+            window.addEventListener('scroll', handleScrollAnimation);
+            
+            // Проверяем при загрузке
+            handleScrollAnimation();
+            
+            // Анимация ховера для социальных ссылок
+            const socialLinks = document.querySelectorAll('.social-link');
+            socialLinks.forEach(link => {
+                link.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px) scale(1.05)';
+                });
+                
+                link.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+            
+            // Плавная анимация при клике на ссылки
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
