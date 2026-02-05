@@ -23,6 +23,7 @@
         header {
             text-align: center;
             padding: 50px 0;
+            position: relative;
         }
         
         .avatar {
@@ -33,6 +34,28 @@
             border: 5px solid #7c3aed;
             margin: 0 auto 20px;
             display: block;
+        }
+        
+        .logo-circle {
+            position: absolute;
+            top: 50px;
+            right: 50px;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid #7c3aed;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo-circle img {
+            width: 90%;
+            height: 90%;
+            object-fit: contain;
+            border-radius: 0;
         }
         
         h1 {
@@ -84,6 +107,11 @@
             background: #1e293b;
             border-radius: 10px;
             overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .project:hover {
+            transform: translateY(-5px);
         }
         
         .project img {
@@ -114,11 +142,21 @@
         
         @media (max-width: 900px) {
             .projects { grid-template-columns: repeat(2, 1fr); }
+            .logo-circle {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin: 20px auto;
+            }
         }
         
         @media (max-width: 600px) {
             .projects { grid-template-columns: 1fr; }
             h1 { font-size: 2rem; }
+            .logo-circle {
+                width: 100px;
+                height: 100px;
+            }
         }
     </style>
 </head>
@@ -126,7 +164,12 @@
     <div class="container">
         <header>
             <img src="avatar.jpg" alt="Наталья Сарычева" class="avatar">
-            <h1>Сарычева Наталья</h1>
+            
+            <div class="logo-circle">
+                <img src="logo.jpg" alt="Логотип Натальи Сарычевой">
+            </div>
+            
+            <h1>Сарычева Наталья Андреевна</h1>
             <p class="subtitle">Графический дизайнер / Иллюстратор</p>
             <p class="description">
                 Создаю уникальные визуальные решения и брендинг. 
@@ -179,7 +222,7 @@
         </div>
         
         <footer>
-            <p>© 2024 Сарычева Наталья. Портфолио на GitHub Pages.</p>
+            <p>© 2024 Сарычева Наталья Андреевна. Портфолио на GitHub Pages.</p>
         </footer>
     </div>
 </body>
