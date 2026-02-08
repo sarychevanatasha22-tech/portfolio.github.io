@@ -52,32 +52,14 @@
             text-decoration: none;
         }
 
-        .logo-icon {
-            width: 50px;
+        .logo img {
             height: 50px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 800;
-            font-size: 24px;
-            font-family: 'Oswald', sans-serif;
+            width: auto;
         }
 
         .logo-text {
             display: flex;
             flex-direction: column;
-        }
-
-        .logo-main {
-            font-family: 'Oswald', sans-serif;
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--dark);
-            line-height: 1;
-            letter-spacing: 1px;
         }
 
         .logo-sub {
@@ -176,8 +158,7 @@
         /* Hero Section */
         .hero {
             min-height: 100vh;
-            background: linear-gradient(135deg, rgba(26,35,126,0.85), rgba(0,188,212,0.8)), 
-                        url('https://images.unsplash.com/photo-1566008885218-90abf9200ddb?w=1920') center/cover;
+            background: linear-gradient(135deg, rgba(26,35,126,0.85), rgba(0,188,212,0.8));
             display: flex;
             align-items: center;
             padding: 120px 5% 80px;
@@ -203,8 +184,17 @@
             50% { transform: translateY(-30px) rotate(10deg); }
         }
 
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            width: 100%;
+        }
+
         .hero-content {
-            max-width: 700px;
             color: white;
             z-index: 2;
             animation: slideInLeft 1s ease-out;
@@ -253,7 +243,6 @@
             margin-bottom: 35px;
             opacity: 0.95;
             line-height: 1.7;
-            max-width: 600px;
         }
 
         .hero-features {
@@ -288,6 +277,48 @@
             display: flex;
             gap: 20px;
             flex-wrap: wrap;
+        }
+
+        .hero-image {
+            position: relative;
+            z-index: 2;
+            animation: slideInRight 1s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 30px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+        }
+
+        .tariff-badge {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            color: var(--dark);
+            padding: 20px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 18px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            white-space: nowrap;
+        }
+
+        .tariff-badge small {
+            display: block;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+            opacity: 0.8;
         }
 
         .btn-primary {
@@ -1046,6 +1077,19 @@
                 display: none;
             }
 
+            .hero-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            .tariff-badge {
+                font-size: 14px;
+                padding: 15px 25px;
+            }
+
             .vehicle-container {
                 grid-template-columns: 1fr;
             }
@@ -1127,6 +1171,16 @@
             .price-value {
                 font-size: 36px;
             }
+
+            .tariff-badge {
+                font-size: 12px;
+                padding: 12px 20px;
+                bottom: -15px;
+            }
+
+            .tariff-badge small {
+                font-size: 10px;
+            }
         }
 
         /* Animations */
@@ -1148,9 +1202,9 @@
     <!-- Navigation -->
     <nav id="navbar">
         <a href="#" class="logo">
-            <div class="logo-icon">N</div>
+            <!-- ВСТАВКА ЛОГОТИПА -->
+            <img src="logo" alt="Nisa Yamy">
             <div class="logo-text">
-                <div class="logo-main">Nisa Yamy</div>
                 <div class="logo-sub">Грузоперевозки и доставка</div>
             </div>
         </a>
@@ -1162,8 +1216,8 @@
             <li><a href="#contacts">Контакты</a></li>
         </ul>
         <div class="phone-block">
-            <a href="tel:+78005504025" class="phone-main">+7 (800) 550-40-25</a>
-            <span class="phone-sub">Ежедневно с 09:00 до 19:00</span>
+            <a href="tel:+79006069233" class="phone-main">+7 (900) 606-92-33</a>
+            <span class="phone-sub">Пн-Пт: с 9 до 19</span>
         </div>
         <div class="mobile-menu-btn" onclick="toggleMenu()">
             <span></span>
@@ -1174,22 +1228,32 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content">
-            <div class="hero-badge">Работаем по Рязани и области</div>
-            <h1>Быстрая доставка <span>любых грузов</span></h1>
-            <p>Профессиональные грузоперевозки на Ford Transit. Переезды, доставка оборудования, вывоз мусора. Точно в срок, бережно, недорого.</p>
-            <div class="hero-features">
-                <div class="hero-feature">От 500 ₽ за рейс</div>
-                <div class="hero-feature">Без грузчиков</div>
-                <div class="hero-feature">GPS-отслеживание</div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">Работаем по Рязани и области</div>
+                <h1>Быстрая доставка <span>любых грузов</span></h1>
+                <p>Профессиональные грузоперевозки на Ford Transit. Переезды, доставка оборудования, вывоз мусора. Точно в срок, бережно, недорого.</p>
+                <div class="hero-features">
+                    <div class="hero-feature">От 2200 руб. за рейс</div>
+                    <div class="hero-feature">Без грузчиков</div>
+                    <div class="hero-feature">GPS-отслеживание</div>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#" class="btn-primary" onclick="openModal(); return false;">
+                        <span>🚚</span> Заказать перевозку
+                    </a>
+                    <a href="tel:+79006069233" class="btn-secondary">
+                        <span>📞</span> Позвонить
+                    </a>
+                </div>
             </div>
-            <div class="hero-buttons">
-                <a href="#" class="btn-primary" onclick="openModal(); return false;">
-                    <span>🚚</span> Заказать перевозку
-                </a>
-                <a href="tel:+78005504025" class="btn-secondary">
-                    <span>📞</span> Позвонить
-                </a>
+            <div class="hero-image">
+                <!-- ВСТАВКА ФОТО 1 -->
+                <img src="photo1" alt="Грузоперевозки Nisa Yamy">
+                <div class="tariff-badge">
+                    Тариф: 1100 руб/ч
+                    <small>работаем от 2 часов</small>
+                </div>
             </div>
         </div>
     </section>
@@ -1244,7 +1308,7 @@
             <div class="service-card fade-in">
                 <div class="service-icon">⚡</div>
                 <h3>Срочные заказы</h3>
-                <p>Экспресс-доставка в течение 1-2 часов. Работаем без выходных.</p>
+                <p>Экспресс-доставка в течение 1-2 часов. Пн-Пт с 9 до 19.</p>
             </div>
             <div class="service-card fade-in">
                 <div class="service-icon">🚛</div>
@@ -1258,7 +1322,8 @@
     <section class="vehicle" id="vehicle">
         <div class="vehicle-container">
             <div class="vehicle-image fade-in">
-                <img src="https://images.unsplash.com/photo-1566008885218-90abf9200ddb?w=800" alt="Ford Transit">
+                <!-- ВСТАВКА ФОТО 2 -->
+                <img src="photo2" alt="Ford Transit">
                 <div class="vehicle-badge">Ford Transit</div>
             </div>
             <div class="vehicle-info fade-in">
@@ -1309,10 +1374,10 @@
                     <div class="form-group">
                         <label>Тип услуги</label>
                         <select id="serviceType" onchange="updatePrice()">
-                            <option value="1000">Только перевозка</option>
-                            <option value="2500">Переезд</option>
-                            <option value="2000">Доставка товара</option>
-                            <option value="1500">Вывоз мусора/мебели</option>
+                            <option value="2200">Только перевозка</option>
+                            <option value="3500">Переезд</option>
+                            <option value="2500">Доставка товара</option>
+                            <option value="2000">Вывоз мусора/мебели</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -1327,7 +1392,7 @@
             </form>
             <div class="price-display">
                 <div class="price-label">Примерная стоимость:</div>
-                <div class="price-value" id="totalPrice">от 1 000 ₽</div>
+                <div class="price-value" id="totalPrice">от 2 200 ₽</div>
             </div>
             <div style="text-align: center; margin-top: 30px;">
                 <button class="btn-primary" onclick="openModal()" style="border: none; cursor: pointer;">
@@ -1361,8 +1426,8 @@
             <div class="advantage-item fade-in">
                 <div class="advantage-number">03</div>
                 <div class="advantage-content">
-                    <h3>Работаем ежедневно</h3>
-                    <p>С 9:00 до 19:00 без выходных. Срочные заказы выполняем в течение часа.</p>
+                    <h3>Режим работы Пн-Пт</h3>
+                    <p>С 9:00 до 19:00. Планируйте перевозки заранее — работаем по будням.</p>
                 </div>
             </div>
             <div class="advantage-item fade-in">
@@ -1384,7 +1449,7 @@
                 <a href="#" class="btn-primary" onclick="openModal(); return false;">
                     <span>🚚</span> Заказать перевозку
                 </a>
-                <a href="tel:+78005504025" class="btn-secondary">
+                <a href="tel:+79006069233" class="btn-secondary">
                     <span>📞</span> Позвонить
                 </a>
             </div>
@@ -1403,15 +1468,14 @@
             </div>
             <div class="footer-section">
                 <h3>Контакты</h3>
-                <a href="tel:+78005504025">📞 +7 (800) 550-40-25</a>
+                <a href="tel:+79006069233">📞 +7 (900) 606-92-33</a>
                 <a href="mailto:zakaz@kns-engineering.ru">✉️ zakaz@kns-engineering.ru</a>
                 <p>🏢 г. Рязань, Куйбышевское шоссе, 14а</p>
             </div>
             <div class="footer-section">
                 <h3>Режим работы</h3>
                 <p>Пн-Пт: с 09:00 до 19:00<br>
-                Сб-Вс: с 10:00 до 17:00<br>
-                Срочные заказы: 24/7</p>
+                Сб-Вс: выходной</p>
             </div>
             <div class="footer-section">
                 <h3>Информация</h3>
@@ -1444,7 +1508,7 @@
                 </form>
                 <div class="modal-contacts">
                     <p>Или свяжитесь с нами напрямую:</p>
-                    <a href="tel:+78005504025" class="modal-phone">+7 (800) 550-40-25</a>
+                    <a href="tel:+79006069233" class="modal-phone">+7 (900) 606-92-33</a>
                     <a href="mailto:zakaz@kns-engineering.ru" class="modal-email">zakaz@kns-engineering.ru</a>
                 </div>
             </div>
